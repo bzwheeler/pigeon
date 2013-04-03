@@ -5,7 +5,7 @@ Configuration based RabbitMQ interface based on node-amqp
 
 ## Installation
 
-    npm install pigeon
+    npm install pigeon-post
 
 ## Synopsis
 
