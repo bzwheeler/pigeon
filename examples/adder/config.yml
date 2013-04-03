@@ -1,0 +1,37 @@
+---
+publishers:
+  -
+    name: numbers
+    options:
+      type: fanout
+    publishes:
+      - number-entered
+  -
+    name: adder
+    options:
+      type: direct
+      durable: true
+      autoDelete: false
+    bindings:
+      numbers:
+        - number-entered
+
+subscribers:
+  -
+    name: adder-worker
+    options:
+      durable: true
+      autoDelete: false
+    bindings:
+      adder:
+        - number-entered
+  -
+    name: logger
+    anonymous: true
+    bindings:
+      numbers:
+        - number-entered
+
+eventOptions:
+  default:
+    deliveryMode: 2

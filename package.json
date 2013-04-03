@@ -1,0 +1,19 @@
+{
+  "name": "pigeon",
+  "version": "0.0.1",
+  "author": {
+    "name": "Benjamin Wheeler"
+  },
+  "description": "YAML configuration based RabbitMQ interface",
+  "homepage": "https://github.com/bzwheeler/pigeon",
+  "main": "./pigeon.js",
+  "devDependencies": {
+    "_": ">= 1.4.4",
+    "amqp": ">= 0.1.6",
+    "async": ">= 0.2.6",
+    "js-yaml": ">= 2.0.3"
+  },
+  "engine": "node >= 0.6.0",
+  "_id": "pigeon@0.0.1",
+  "_from": "pigeon"
+}
