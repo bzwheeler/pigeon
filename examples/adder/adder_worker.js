@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var Pigeon = require('pigeon').getInstance().connect('config.yml'),
+var Pigeon = require('pigeon-post').getInstance().connect('config.yml'),
     sum    = 0;
 
 Pigeon.subscribe('adder-worker', {ack:true}, function(json, headers, deliveryInfo, message, next) {

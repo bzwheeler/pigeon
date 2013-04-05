@@ -1,13 +1,13 @@
 {
   "name": "pigeon-post",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Benjamin Wheeler"
   },
   "description": "YAML configuration based RabbitMQ interface",
   "homepage": "https://github.com/bzwheeler/pigeon",
-  "main": "./pigeon.js",
-  "devDependencies": {
+  "main": "./lib/pigeon.js",
+  "dependencies": {
     "_": ">= 1.4.4",
     "amqp": ">= 0.1.6",
     "async": ">= 0.2.6",
@@ -15,5 +15,7 @@
   },
   "engine": "node >= 0.6.0",
   "_id": "pigeon-post@0.0.1",
-  "_from": "pigeon-post"
+  "_from": "pigeon-post@",
+  "readme": "pigeon\n======\n\nConfiguration based RabbitMQ interface based on node-amqp\n\n## Installation\n\n    npm install pigeon\n\n## Synopsis\n\nAn example of connecting to a server, publishing an event and receiving it\n\nConfiguration file\n```yaml\npublishers:\n  -\n    name: greeter\n    options:\n      type: fanout\n    publishes:\n      - greeting\nsubscribers\n  -\n    name: receptionist\n    bindings:\n      greeter:\n        - greeting\n```\n\nPublisher\n```javascript\nvar Pigeon = require('pigeon').getInstance();\n\nPigeon\n    .connect('config.yml')\n    .publish('greeting', {value:'Hello World'})\n```\n\nSubscriber\n```javascript\nvar Pigeon = require('pigeon').getInstance();\n\nPigeon\n    .connect('config.yml')\n    .subscribe('receptionist', function(msg) {\n        console.log(msg);\n    });\n```\n",
+  "readmeFilename": "README.md"
 }
