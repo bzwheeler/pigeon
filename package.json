@@ -1,6 +1,6 @@
 {
   "name": "pigeon-post",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Benjamin Wheeler"
   },
@@ -8,11 +8,15 @@
   "homepage": "https://github.com/bzwheeler/pigeon",
   "main": "./lib/pigeon.js",
   "dependencies": {
-    "_": ">= 1.4.4",
+    "underscore": ">= 1.4.4",
     "amqp": ">= 0.1.6",
     "async": ">= 0.2.6",
     "js-yaml": ">= 2.0.3"
   },
+  "devDependencies": {
+    "sinon": ">= 1.6.0",
+    "should": ">= 1.2.2"
+  }
   "engine": "node >= 0.6.0",
   "_id": "pigeon-post@0.0.1",
   "_from": "pigeon-post@",
