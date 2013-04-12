@@ -113,6 +113,42 @@ describe('Pigeon', function() {
         });
     });
 
+    describe('beforePublish', function() {
+        it('should set prePublish to the passed in function', function(done) {
+            var instance = new Pigeon();
+            instance.connect(config, function() {
+                var doFirst = sinon.spy();
+                var connection = amqp.createConnection.returnValues[0];
+
+                instance.beforePublish(doFirst);
+                instance.beforePublish().should.equal(doFirst);
+                done();
+            });
+        });
+    });
+
+    describe('Before Publishing', function() {
+        it('should call prePublish before publishing', function(done) {
+            var instance = new Pigeon();
+            instance.connect(config, function() {
+                var callback = sinon.spy();
+                var doFirst = sinon.spy(function() {
+                    callback.calledOnce.should.be.false;
+                });
+                var connection = amqp.createConnection.returnValues[0];
+
+                instance.beforePublish(doFirst);
+                instance.publish('foo', 'fooValue', callback);
+
+                process.nextTick(function() {
+                    doFirst.calledOnce.should.be.true;
+                    callback.calledOnce.should.be.true;
+                    done();
+                });
+            });
+        });
+    });
+
     describe('subscribe', function() {
         it('should subscribe to the appropriate queue', function(done) {
             var handler = function(){};
