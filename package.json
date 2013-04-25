@@ -1,6 +1,6 @@
 {
   "name": "pigeon-post",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": {
     "name": "Benjamin Wheeler"
   },
@@ -11,7 +11,8 @@
     "underscore": ">= 1.4.4",
     "amqp": ">= 0.1.6",
     "async": ">= 0.2.6",
-    "js-yaml": ">= 2.0.3"
+    "js-yaml": ">= 2.0.3",
+    "q": ">= 0.9.3"
   },
   "devDependencies": {
     "sinon": ">= 1.6.0",
