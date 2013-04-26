@@ -1,7 +1,8 @@
 var _     = require('underscore'),
     amqp  = require('amqp'),
     sinon = require('sinon'),
-    Mock  = {};
+    Mock  = {},
+    cTag  = 0;
 
 (function() {
     var _original_impl = amqp.createConnection;
@@ -12,15 +13,25 @@ var _     = require('underscore'),
         amqp.createConnection = sinon.spy(function() {
             return {
                 on : sinon.spy(function(evt, cb) {
-                    process.nextTick(function() {
-                        cb()
-                    });
+                    cb();
                 }),
                 queue : sinon.spy(function(name, options, cb) {
                     var queue = {
                         bind : sinon.spy(),
                         subscribe : sinon.spy(function(options, handler) {
                             handler(1,2,3,4);
+                            return {
+                                addCallback : sinon.spy(function(cb){
+                                    cb({consumerTag:cTag++});
+                                })
+                            };
+                        }),
+                        unsubscribe : sinon.spy(function(consumerTag) {
+                            return {
+                                addCallback : sinon.spy(function(cb){
+                                    cb();
+                                })
+                            };
                         }),
                         shift : sinon.spy()
                     };
